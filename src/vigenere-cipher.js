@@ -33,7 +33,7 @@ class VigenereCipheringMachine {
         
         for(let i=0;i<message.length;i++){
                 if(alphabet.includes(message[i])){
-                   let index=(((alphabet.indexOf(message[i])-alphabet.indexOf(keys[j]))+26)%26)
+                   let index=(((alphabet.indexOf(message[i])-alphabet.indexOf(keys[j]))+26)%26);
                    let tmp=alphabet[index];
                    messageCodes.push(tmp);
                     j++;
