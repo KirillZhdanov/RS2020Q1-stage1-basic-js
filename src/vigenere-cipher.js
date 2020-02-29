@@ -5,11 +5,11 @@ class VigenereCipheringMachine {
         let messageCodes=[];
         let keys=key.toUpperCase();
         let j=0;
-        console.log("message:"+message);
-        console.log("keys:"+keys);
+        if(!this.algoDirection)
+        message=message.split("").reverse();
         for(let i=0;i<message.length;i++){
                if(alphabet.includes(message[i])){
-                    let index=((alphabet.indexOf(message[i])+alphabet.indexOf(keys[j]))%26)
+                    let index=((alphabet.indexOf(message[i])+alphabet.indexOf(keys[j]))%26);
                     let tmp=alphabet[index];
                     messageCodes.push(tmp);
                     j++;
@@ -19,7 +19,6 @@ class VigenereCipheringMachine {
                else 
                messageCodes.push(message[i]);
     }
-        console.log("messageCodes:"+messageCodes);
         return messageCodes.join("");
     }
 
@@ -29,8 +28,9 @@ class VigenereCipheringMachine {
         let messageCodes=[];
         let keys=key.toUpperCase();
         let j=0;
-        console.log("message to Decrypt:"+message);
-        console.log("keys:"+keys);
+        if(!this.algoDirection)
+        message=message.split("").reverse();
+        
         for(let i=0;i<message.length;i++){
                 if(alphabet.includes(message[i])){
                    let index=(((alphabet.indexOf(message[i])-alphabet.indexOf(keys[j]))+26)%26)
@@ -43,9 +43,12 @@ class VigenereCipheringMachine {
                 else 
                 messageCodes.push(message[i]);      
         }
-        console.log("messageCodes  to Decrypt:"+messageCodes);
                 return messageCodes.join("");
     }
+    constructor(algoDirect=true){
+        this.algoDirection=algoDirect;
+        return this.algoDirection;
+     }
 }
 
 module.exports = VigenereCipheringMachine;
