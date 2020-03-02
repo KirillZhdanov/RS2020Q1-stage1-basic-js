@@ -1,26 +1,29 @@
 module.exports = function transform(arr) {
-    let res=[],index=[],flag=false;
+    let res=[];
     if(arr instanceof Array){
-        arr.forEach((element,i)=>{
-        if(element=="--discard-next"){
-          flag=true;
+        for(let i=0;i<arr.length;i++){
+        
+            if(arr[i]=="--discard-next"){
+         i++;
+         continue;
         }
         else 
-        if(element=="--discard-prev"){
-            res=res.splice(res.length,1);
-            res.pop();
+        if(arr[i]=="--discard-prev"){
+                 res.pop();
+            
         }
         else 
-        if(element=="--double-next"){
-            if(i!=arr.length)
+        if(arr[i]=="--double-next"){
+            if(i!=arr.length-1)
             res.push(arr[i+1]);
         }
         else 
-        if(element=="--double-prev"){
-                if(i>0)res.push(arr[i-1]);}
+        if(arr[i]=="--double-prev"){
+                if(i>0)
+                res.push(arr[i-1]);}
         else 
-        res.push(element);
-    })
+        res.push(arr[i]);
+    }
     
     return res;}
     else 
